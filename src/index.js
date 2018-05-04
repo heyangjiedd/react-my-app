@@ -1,40 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {BrowserRouter,Redirect, Router, Route, Link,Switch} from 'react-router-dom';
+import { Provider } from 'react-router-redux';
 import './app.css';
-import {LocaleProvider, DatePicker, message} from 'antd';
-// 由于 antd 组件的默认文案是英文，所以需要修改为中文
-import zhCN from 'antd/lib/locale-provider/zh_CN';
-import moment from 'moment';
-import 'moment/locale/zh-cn';
-
-moment.locale('zh-cn');
-
-class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            date: '',
-        };
-    }
-
-    handleChange(date) {
-        message.info('您选择的日期是: ' + (date ? date.toString() : ''));
-        this.setState({date});
-    }
-
+class Home extends React.Component {
     render() {
-        return (
-            <div>
-                <LocaleProvider locale={zhCN}>
-                    <div style={{width: 400, margin: '100px auto'}}>
-                        <DatePicker onChange={value => this.handleChange(value)}/>
-                        <div style={{marginTop: 20}}>当前日期：{this.state.date && this.state.date.toString()}</div>
-                    </div>
-                </LocaleProvider>
-            </div>)
+        return ( <div className="App">
+            <Switch>
+                <Route path="/login" exact render={(({location}) => (<h1>来玩啊，小帅哥</h1>)) } />
+                <Route path="/" render={(({location}) => (<h1>来玩啊，小帅哥321</h1>)) } />
+            </Switch>
+        </div>)
     }
 }
-ReactDOM.render(
-    <App />,
-    document.getElementById('root')
-);
+class LoginContainer extends React.Component {
+    render() {
+        return (<div>niha</div>)
+    }
+}
+ReactDOM.render(<BrowserRouter>
+    <Provider>
+        <div>
+            <Switch>
+                <Route exact path="/" component={LoginContainer}/>
+                <Route path="/home" component={Home}/>
+                <Redirect to="/"/>
+            </Switch>
+        </div>
+    </Provider>
+</BrowserRouter>, document.getElementById('root'));
