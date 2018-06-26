@@ -1,4 +1,4 @@
-import store from '../store'
+// import store from '../store'
 
 // These are "fake network" function that in a real scenario would
 // call the backend API and upon return would update your redux state.
@@ -7,19 +7,19 @@ import store from '../store'
 
 export const getLoggedUser = () => {
     setTimeout(() => {
-        store.dispatch({
-            type: 'GET_LOGGED_USER'
-        })
+        // store.dispatch({
+        //     type: 'GET_LOGGED_USER'
+        // })
     }, 500)
 }
 
 export const login = () => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            store.dispatch({
-                type: 'SET_LOGGED_USER',
-                logged: true
-            })
+            // store.dispatch({
+            //     type: 'SET_LOGGED_USER',
+            //     logged: true
+            // })
             resolve()
         }, 500)
     })
@@ -28,10 +28,10 @@ export const login = () => {
 export const logout = () => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            store.dispatch({
-                type: 'SET_LOGGED_USER',
-                logged: false
-            })
+            // store.dispatch({
+            //     type: 'SET_LOGGED_USER',
+            //     logged: false
+            // })
             resolve()
         }, 500)
     })
